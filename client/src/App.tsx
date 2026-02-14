@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { FloatingHearts } from './FloatingHearts';
-import { PolaroidCard } from './PolaroidCard';
-import { Navigation } from './Navigation';
-import { PageTransition } from './PageTransition';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('welcome');
   
-  // ALL YOUR 33 PHOTOS!
   const photos = [
     '/541749961_1270428264402870_4338543504354237540_n.jpg',
     '/543689345_2030718267670844_5418385007862742619_n.jpg',
@@ -47,99 +42,201 @@ function App() {
   const [currentPhoto, setCurrentPhoto] = useState(0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100">
-      <FloatingHearts />
-     
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(to bottom right, #fce7f3, #e9d5ff, #dbeafe)',
+      padding: '2rem'
+    }}>
       
-      {/* WELCOME PAGE */}
       {currentPage === 'welcome' && (
-        <PageTransition>
-          <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center">
-            <h1 className="text-6xl font-bold text-pink-600 mb-4 animate-bounce">
-              🌸 Happy Galentine's Day 2026! 🌸
-            </h1>
-            <p className="text-2xl text-purple-600 mb-8">
-              Celebrating friendship with my amazing squad!
-            </p>
-            <button 
-              onClick={() => setCurrentPage('photos')}
-              className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-8 rounded-full text-xl transform hover:scale-110 transition"
-            >
-              Let's Begin! 💖
-            </button>
-          </div>
-        </PageTransition>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh',
+          textAlign: 'center'
+        }}>
+          <h1 style={{
+            fontSize: '4rem',
+            fontWeight: 'bold',
+            color: '#ec4899',
+            marginBottom: '1rem'
+          }}>
+            🌸 Happy Galentine's Day 2026! 🌸
+          </h1>
+          <p style={{
+            fontSize: '2rem',
+            color: '#9333ea',
+            marginBottom: '2rem'
+          }}>
+            Celebrating friendship with my amazing squad!
+          </p>
+          <button 
+            onClick={() => setCurrentPage('photos')}
+            style={{
+              backgroundColor: '#ec4899',
+              color: 'white',
+              fontWeight: 'bold',
+              padding: '1rem 2rem',
+              borderRadius: '9999px',
+              fontSize: '1.5rem',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            Let's Begin! 💖
+          </button>
+        </div>
       )}
 
-      {/* PHOTO GALLERY PAGE */}
       {currentPage === 'photos' && (
-        <PageTransition>
-          <div className="flex flex-col items-center justify-center min-h-screen p-8">
-            <h2 className="text-4xl font-bold text-pink-600 mb-8">Our Memories Together 📸</h2>
-            
-            <PolaroidCard 
-              imageUrl={photos[currentPhoto]} 
-              caption={`Memory ${currentPhoto + 1} of ${photos.length}`}
-            />
-            
-            <div className="flex gap-4 mt-8">
-              <button 
-                onClick={() => setCurrentPhoto((prev) => (prev - 1 + photos.length) % photos.length)}
-                className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-full"
-              >
-                ← Previous
-              </button>
-              <button 
-                onClick={() => setCurrentPhoto((prev) => (prev + 1) % photos.length)}
-                className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-full"
-              >
-                Next →
-              </button>
-            </div>
-            
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh'
+        }}>
+          <h2 style={{
+            fontSize: '3rem',
+            fontWeight: 'bold',
+            color: '#ec4899',
+            marginBottom: '2rem'
+          }}>
+            Our Memories Together 📸
+          </h2>
+          
+          <img 
+            src={photos[currentPhoto]} 
+            alt={`Memory ${currentPhoto + 1}`}
+            style={{
+              maxWidth: '600px',
+              width: '100%',
+              borderRadius: '1rem',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.3)'
+            }}
+          />
+          <p style={{
+            fontSize: '1.5rem',
+            marginTop: '1rem',
+            color: '#9333ea'
+          }}>
+            Memory {currentPhoto + 1} of {photos.length}
+          </p>
+          
+          <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
             <button 
-              onClick={() => setCurrentPage('certificate')}
-              className="mt-8 bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full"
+              onClick={() => setCurrentPhoto((prev) => (prev - 1 + photos.length) % photos.length)}
+              style={{
+                backgroundColor: '#a855f7',
+                color: 'white',
+                fontWeight: 'bold',
+                padding: '0.75rem 1.5rem',
+                borderRadius: '9999px',
+                border: 'none',
+                cursor: 'pointer'
+              }}
             >
-              See Your Surprise! 🎊
+              ← Previous
+            </button>
+            <button 
+              onClick={() => setCurrentPhoto((prev) => (prev + 1) % photos.length)}
+              style={{
+                backgroundColor: '#a855f7',
+                color: 'white',
+                fontWeight: 'bold',
+                padding: '0.75rem 1.5rem',
+                borderRadius: '9999px',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              Next →
             </button>
           </div>
-        </PageTransition>
+          
+          <button 
+            onClick={() => setCurrentPage('certificate')}
+            style={{
+              marginTop: '2rem',
+              backgroundColor: '#ec4899',
+              color: 'white',
+              fontWeight: 'bold',
+              padding: '0.75rem 2rem',
+              borderRadius: '9999px',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            See Your Surprise! 🎊
+          </button>
+        </div>
       )}
 
-      {/* CERTIFICATE PAGE */}
       {currentPage === 'certificate' && (
-        <PageTransition>
-          <div className="flex flex-col items-center justify-center min-h-screen p-8">
-            <div className="bg-white border-8 border-pink-400 rounded-lg p-12 max-w-2xl shadow-2xl">
-              <div className="text-center">
-                <div className="text-6xl mb-6">💖</div>
-                <h1 className="text-5xl font-bold text-pink-600 mb-6">Certificate of Friendship</h1>
-                <p className="text-xl mb-6">This certifies that</p>
-                <p className="text-4xl font-bold text-purple-600 italic border-b-4 border-pink-400 pb-4 mb-6">
-                  Our Amazing Squad
-                </p>
-                <p className="text-2xl mb-4">is hereby declared as</p>
-                <p className="text-3xl font-bold text-pink-600 mb-6">
-                  🌟 BEST FRIENDS FOREVER! 🌟
-                </p>
-                <p className="text-lg mb-8">
-                  Awarded on Valentine's Day 2026
-                  <br />
-                  For: Being absolutely amazing!
-                </p>
-                <p className="text-xl italic text-purple-600">💝 Friends Forever 💝</p>
-              </div>
-            </div>
-            
-            <button 
-              onClick={() => setCurrentPage('welcome')}
-              className="mt-8 bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full"
-            >
-              Start Over 🔄
-            </button>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh'
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            border: '8px solid #f9a8d4',
+            borderRadius: '1rem',
+            padding: '3rem',
+            maxWidth: '700px',
+            boxShadow: '0 25px 50px rgba(0,0,0,0.2)',
+            textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '4rem', marginBottom: '1.5rem' }}>💖</div>
+            <h1 style={{ fontSize: '3rem', fontWeight: 'bold', color: '#ec4899', marginBottom: '1.5rem' }}>
+              Certificate of Friendship
+            </h1>
+            <p style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>This certifies that</p>
+            <p style={{
+              fontSize: '2.5rem',
+              fontWeight: 'bold',
+              color: '#9333ea',
+              fontStyle: 'italic',
+              borderBottom: '4px solid #f9a8d4',
+              paddingBottom: '1rem',
+              marginBottom: '1.5rem'
+            }}>
+              Our Amazing Squad
+            </p>
+            <p style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>is hereby declared as</p>
+            <p style={{ fontSize: '2.2rem', fontWeight: 'bold', color: '#ec4899', marginBottom: '1.5rem' }}>
+              🌟 BEST FRIENDS FOREVER! 🌟
+            </p>
+            <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>
+              Awarded on Valentine's Day 2026
+              <br />
+              For: Being absolutely amazing!
+            </p>
+            <p style={{ fontSize: '1.5rem', fontStyle: 'italic', color: '#9333ea' }}>
+              💝 Friends Forever 💝
+            </p>
           </div>
-        </PageTransition>
+          
+          <button 
+            onClick={() => setCurrentPage('welcome')}
+            style={{
+              marginTop: '2rem',
+              backgroundColor: '#ec4899',
+              color: 'white',
+              fontWeight: 'bold',
+              padding: '0.75rem 2rem',
+              borderRadius: '9999px',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            Start Over 🔄
+          </button>
+        </div>
       )}
     </div>
   );
