@@ -3,7 +3,6 @@ import { FloatingHearts } from './FloatingHearts';
 import { PolaroidCard } from './PolaroidCard';
 import { Navigation } from './Navigation';
 import { PageTransition } from './PageTransition';
-import { MusicPlayer } from './MusicPlayer';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('welcome');
@@ -50,7 +49,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100">
       <FloatingHearts />
-      <MusicPlayer />
+     
       
       {/* WELCOME PAGE */}
       {currentPage === 'welcome' && (
